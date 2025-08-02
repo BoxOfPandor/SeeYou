@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 280px;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin: 4px 0 0 0;
+        }
+
+        .setting-group {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .setting-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .toggle-label {
+            font-size: 13px;
+            flex: 1;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        .toggle-input:checked + .toggle-slider {
+            background-color: #4CAF50;
+        }
+
+        .toggle-input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .action-button.primary {
+            background: #4285f4;
+        }
+
+        .action-button.primary:hover {
+            background: #1a73e8;
+        }
+
+        .status {
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 12px;
+        }
+
+        .keyboard-hint {
+            font-size: 11px;
+            opacity: 0.7;
+            text-align: center;
+            margin-top: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h3 class="title">🗂️ Blob Downloader</h3>
+        <p class="subtitle">Contrôles et paramètres</p>
+    </div>
+
+    <div class="setting-group">
+        <div class="setting-title">👁️ Affichage</div>
+        <div class="toggle-container">
+            <span class="toggle-label">Afficher l'icône flottante</span>
+            <label class="toggle-switch">
+                <input type="checkbox" class="toggle-input" id="showFloatingIcon" checked>
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="setting-group">
+        <div class="setting-title">⚡ Actions rapides</div>
+        <button class="action-button primary" id="toggleOverlay">Ouvrir/Fermer l'overlay</button>
+        <button class="action-button" id="scanCurrentPage">Scanner cette page</button>
+    </div>
+
+    <div class="keyboard-hint">
+        💡 Astuce: Utilisez Échap pour fermer l'overlay
+    </div>
+
+    <div class="status" id="status">Extension prête</div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
